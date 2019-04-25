@@ -6,17 +6,17 @@
 package harjoitustyo.tiedot;
 
 import harjoitustyo.apulaiset.Sailova;
-import harjoitustyo.omalista.OmaLista;
 import java.util.LinkedList;
+
 /**
  *
  * @author helen
  */
-public class Hakemisto extends Tieto implements Sailova<Tieto> {
+public class Hakemisto<T> extends Tieto implements Sailova<T> {
     /**
      * Attribuutit.
      * */
-    private OmaLista<Tieto> sisalto;
+    OmaLista<Tieto> sisalto;
     
     private Hakemisto ylihakemisto;
 
@@ -24,8 +24,7 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
      * Rakentajat.
      * */
     public Hakemisto() {
-        super();
-        this.sisalto = new OmaLista<Tieto>();
+        this.sisalto = new OmaLista<>();
         ylihakemisto = null;
     }
     
@@ -34,41 +33,27 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
      * @param hakemistoNimi
      * @param yHakemisto
      */
-    public Hakemisto (StringBuilder hakemistoNimi, Hakemisto yHakemisto) {
+    public Hakemisto (StringBuilder hakemistoNimi, Hakemisto yHakemisto)throws IllegalArgumentException {
         super(hakemistoNimi);
         ylihakemisto(yHakemisto);
-        this.sisalto = new OmaLista<Tieto>();
+        this.sisalto = new OmaLista<>();
     }
     
     /**
      * Aksessorit.
      * @param yHakemisto
      */
-    public void ylihakemisto(Hakemisto yHakemisto) {
+    private void ylihakemisto(Hakemisto yHakemisto) {
         ylihakemisto = yHakemisto;
     }
-    
-    public Hakemisto ylihakemisto() {
-        return ylihakemisto;
-    }
-    
-    public OmaLista<Tieto> sisalto() {
-        return sisalto;
-    }
-    
-    public void sisalto(harjoitustyo.omalista.OmaLista<harjoitustyo.tiedot.Tieto> uusiSisalto) {
-        sisalto = uusiSisalto;
-    }
-    
     
     /**
      * Korvatut metodit.
      * */
-    @SuppressWarnings("unchecked")
     @Override
-    public LinkedList<Tieto> hae(String hakusana) {
+    public LinkedList hae(String hakusana) {
         try {
-            LinkedList<Tieto> haettuLista = new LinkedList<Tieto>();
+            LinkedList haettuLista = new LinkedList();
             
             for (int i = 0; i < sisalto.size(); i++) {
                 Tieto seuraavaAlkio = sisalto.get(i);
@@ -84,26 +69,16 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
         }
     }
 
-
     @Override
-    public boolean lisaa(Tieto lisattava) {
-        return sisalto.lisaa(lisattava);  
+    public boolean lisaa(Object lisattava) {
+        OmaLista uusiListattava = (OmaLista)listattava;
+        OmaLista.lisaa(lisattava);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
-    public boolean poista(Tieto poistettava) {
-        if (poistettava == null) {
-            return false;
-        }
-        
-        int vastaus = sisalto.poista(poistettava);
-        
-        if (vastaus == 0) {
-            return false;
-        }
-        else {
-            return true;
-        }
+    public boolean poista(Object poistettava) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /**

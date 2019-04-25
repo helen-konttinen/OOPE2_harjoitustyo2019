@@ -28,47 +28,38 @@ public abstract class Tieto implements Tietoinen, Comparable<Tieto>{
     * Aksessoirt.
     */
    
-   public StringBuilder nimi () {
-       return nimi;
-   }
    /**
     * Yritetään asettaa uusi nimi.
     * @param uusiNimi tiedon mahdollinen uusi nimi.
     * @throws IllegalArgumentException, jos nimi on virheellinen 
     */
    public void nimi (StringBuilder uusiNimi) throws IllegalArgumentException {
-       if (uusiNimi == null || uusiNimi.length() == 0) {
-           throw new IllegalArgumentException("Error!");
-       }
-       
-       boolean vainPisteita = true;
-       
        for (int i = 0; i < uusiNimi.length(); i++) {
            char merkki  = uusiNimi.charAt(i);
            
-           
+           if (uusiNimi == null) {
+               throw new IllegalArgumentException("Error!");
+               
+           }
            if ( uusiNimi.length() == 1) {
               if (merkki == '.') {
                  throw new IllegalArgumentException("Error!");
               }
            }
-           if ((merkki < 'a' || merkki > 'z') && (merkki < 'A' || merkki > 'Z') 
-           && (merkki < '0' || merkki > '9') && (merkki != '_') && (merkki != '.')) {
+           if ((merkki < 'a' && merkki > 'z') && (merkki < 'A' && merkki > 'Z') 
+           && (merkki < '0' && merkki > '9') && (merkki != '_') && (merkki != '.')) {
                throw new IllegalArgumentException("Error!");
            }
-           
-           if (merkki != '.') {
-               vainPisteita = false;
-           }
-       }
-       if (vainPisteita) {
-           throw new IllegalArgumentException("Error!");
        }
        nimi = uusiNimi;
    }
    
+   public String nimi () {
+       return nimi.toString();
+   }
+   
    /**
-    * Tietoinen-luokan korvatut metodit.
+    * Object-luokan korvatut metodit.
     * */
    @Override
    public String toString () {
@@ -77,46 +68,17 @@ public abstract class Tieto implements Tietoinen, Comparable<Tieto>{
       return nimi.toString();
    }
    
-   /**
-    * Korvataan Object-luokan equals metodi.
-    * @param kohde
-    * @return 
-    */
    @Override
-   public boolean equals (Object kohde) {
-       try {
-           Tieto kohteenTieto = (Tieto) kohde;
-           String ekaNimi = kohteenTieto.nimi().toString();
-           
-           String tokaNimi = this.nimi.toString();
-           
-           return tokaNimi.equals(ekaNimi);
-       }
-       //String kohteenNimi = kohde.toString();
-       
-       //return equals(kohteenNimi);
-       catch (Exception e) {
-           return false;
-       }
-   }
-   
-   /**
-    * Korvataan Tietoinen-rajapinnan
-    * @param kohde
-    * @return 
-    */
    public boolean equals (String kohde) {
-       String vertailtava = this.nimi.toString();
+       String vertailtava = nimi.toString();
        
        if ( kohde == null || kohde == "") {
            return false;
        }
        else {
+           String olionNimi = nimi.toString();
           
-           if (kohde == "*" || vertailtava.equals(kohde)) {
-               return true;
-           } 
-           else if (kohde.charAt(0) =='*' && kohde.charAt(kohde.length()-1) == '*') {
+           if (kohde.charAt(0) =='*' && kohde.charAt(kohde.length()-1) == '*') {
                if( kohde.length() == 2) {
                    return false;
                }
@@ -131,11 +93,10 @@ public abstract class Tieto implements Tietoinen, Comparable<Tieto>{
            else if(kohde.charAt(0) == '*') {
                for (int j = vertailtava.length()-kohde.length()+1; j < nimi.length(); j++) {
                    for( int k = 1; k < kohde.length(); k++) {
-                       if (vertailtava.charAt(j-1 + k) != kohde.charAt(k)) {
+                       if (vertailtava.charAt(k) != kohde.charAt(k)) {
                            return false;
-                       } 
+                       }
                    }
-                   return true;
                }
                return true;
            }
@@ -161,7 +122,7 @@ public abstract class Tieto implements Tietoinen, Comparable<Tieto>{
    @Override
    public int compareTo (Tieto toinen) {
       // Tämä olio < parametrina saatu olio.
-      String toka = toinen.nimi().toString();
+      String toka = toinen.nimi();
       String eka = this.nimi().toString();
       if (eka.compareTo(toka) < 0) {
          return -1;

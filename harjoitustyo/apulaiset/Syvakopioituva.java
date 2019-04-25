@@ -1,26 +1,26 @@
 package harjoitustyo.apulaiset;
 
 /**
- * Tiedoston syväkopiointiin soveltuva metodi. Kiinnitä geneerinen tyyppi T
- * tyypiksi Tiedosto, kun toteutat tämän rajapinnan Tiedosto-luokassa.
+ * Tiedoston syvï¿½kopiointiin soveltuva metodi. Kiinnitï¿½ geneerinen tyyppi T
+ * tyypiksi Tiedosto, kun toteutat tï¿½mï¿½n rajapinnan Tiedosto-luokassa.
  * <p>
- * Harjoitustyö, Olio-ohjelmoinnin perusteet I, kevät 2019.
+ * Harjoitustyï¿½, Olio-ohjelmoinnin perusteet I, kevï¿½t 2019.
  * <p>
  * @author Jorma Laurikkala (jorma.laurikkala@tuni.fi), Informaatioteknologian
- * ja viestinnän tiedekunta, Tampereen yliopisto.
+ * ja viestinnï¿½n tiedekunta, Tampereen yliopisto.
  *
  */
 
 public interface Syvakopioituva<T> {
    /**
-    * Syväkopioi tiedoston ja palauttaa viitteen kopioon. Muista toteuttaa
-    * Serializable-rajapinta Tieto- ja Tiedosto-luokissa, jos teet syväkopioinnin
-    * kurssilla esitellyllä menetelmällä (luentorungon luku 19). Serializable-
-    * rajapinnan toteukseen riittää tässä työssä pelkkä avain sanalla implements
+    * Syvï¿½kopioi tiedoston ja palauttaa viitteen kopioon. Muista toteuttaa
+    * Serializable-rajapinta Tieto- ja Tiedosto-luokissa, jos teet syvï¿½kopioinnin
+    * kurssilla esitellyllï¿½ menetelmï¿½llï¿½ (luentorungon luku 19). Serializable-
+    * rajapinnan toteukseen riittï¿½ï¿½ tï¿½ssï¿½ tyï¿½ssï¿½ pelkkï¿½ avain sanalla implements
     * tehty sopimus Tieto- ja Tiedosto-luokkien otsikossa. Serializable-rajapinnan
     * metodien toteutusta ei tarvita.
     *
-    * @return viite syväkopioituun tiedostoon.
+    * @return viite syvï¿½kopioituun tiedostoon.
     */
    abstract public T kopioi();
 }

@@ -1,16 +1,16 @@
 package harjoitustyo.apulaiset;
 
 /*
- * Scanner-luokan palveluita hyödyntävä apuluokka int-, double-, char-
- * ja String-tyyppisten syötteiden lukemiseen. Operaatiot lukevat syötettä
- * jääräpäisesti, kunnes käyttäjä suostuu antamaan oikean tyyppisen syötteen.
- * (Myös pelkän Enter-näppäimen painaminen aiheuttaa virheilmoituksen.)
+ * Scanner-luokan palveluita hyï¿½dyntï¿½vï¿½ apuluokka int-, double-, char-
+ * ja String-tyyppisten syï¿½tteiden lukemiseen. Operaatiot lukevat syï¿½tettï¿½
+ * jï¿½ï¿½rï¿½pï¿½isesti, kunnes kï¿½yttï¿½jï¿½ suostuu antamaan oikean tyyppisen syï¿½tteen.
+ * (Myï¿½s pelkï¿½n Enter-nï¿½ppï¿½imen painaminen aiheuttaa virheilmoituksen.)
  *
- * Luokkaa käytetään Lausekielinen ohjelmointi I ja II ja Olio-ohjelmoinnin
+ * Luokkaa kï¿½ytetï¿½ï¿½n Lausekielinen ohjelmointi I ja II ja Olio-ohjelmoinnin
  * perusteet -kursseilla.
  *
- * Jorma Laurikkala (jorma.laurikkala@uta.fi), Informaatiotieteiden yksikkö
- * (tietojenkäsittelytieteet), Tampereen yliopisto.
+ * Jorma Laurikkala (jorma.laurikkala@uta.fi), Informaatiotieteiden yksikkï¿½
+ * (tietojenkï¿½sittelytieteet), Tampereen yliopisto.
  *
  * Versio: 1.1.
  *
@@ -18,7 +18,7 @@ package harjoitustyo.apulaiset;
  *
  */
 
-import java.util.*;  // Scanner-luokka täällä.
+import java.util.*;  // Scanner-luokka tï¿½ï¿½llï¿½.
 
 final public class In {
    /*
@@ -26,11 +26,11 @@ final public class In {
     *
     */
 
-   // Oletussyötevirtaan liitetty syötteiden lukija.
+   // Oletussyï¿½tevirtaan liitetty syï¿½tteiden lukija.
    private static final Scanner READER = initializeREADER();
 
-   // Virheilmoitus, joka tulostetaan, kun syöte on väärää tyyppiä.
-   private static final String BARF = "Virheellinen syöte!";
+   // Virheilmoitus, joka tulostetaan, kun syï¿½te on vï¿½ï¿½rï¿½ï¿½ tyyppiï¿½.
+   private static final String BARF = "Virheellinen syï¿½te!";
 
    // Virheilmoitus, joka tulostetaan, kun on vakava ongelma.
    private static final String AARGH = "Virhe In-luokassa!";
@@ -43,10 +43,10 @@ final public class In {
    /* Metodi READER-attribuutin alustamiseen.
     */
    private static Scanner initializeREADER() {
-      // Luodaan ja liitetään oletussyötevirtaan.
+      // Luodaan ja liitetï¿½ï¿½n oletussyï¿½tevirtaan.
       Scanner sc = new Scanner(System.in);
 
-      // Lokalisoidaan siten, että esimerkiksi desimaalimerkki on piste.
+      // Lokalisoidaan siten, ettï¿½ esimerkiksi desimaalimerkki on piste.
       Locale enLocale = new Locale("en");
       sc.useLocale(enLocale);
 
@@ -54,7 +54,7 @@ final public class In {
       return sc;
    }
 
-   /* Pysäytetään ohjelma, jos jokin meni pahasti pieleen.
+   /* Pysï¿½ytetï¿½ï¿½n ohjelma, jos jokin meni pahasti pieleen.
     */
    private static void doNotSoGracefulExit(Exception e) {
       // Herjataan.
@@ -72,28 +72,28 @@ final public class In {
     *
     */
 
-   /* Luetaan käyttäjältä int-tyyppistä syötettä,
-    * kunnes käyttäjä suostuu sellaisen antamaan.
+   /* Luetaan kï¿½yttï¿½jï¿½ltï¿½ int-tyyppistï¿½ syï¿½tettï¿½,
+    * kunnes kï¿½yttï¿½jï¿½ suostuu sellaisen antamaan.
     */
    public static int readInt() {
-      // Luetaan, kunnes saadaan syöte.
+      // Luetaan, kunnes saadaan syï¿½te.
       int intval = 0;
       boolean inputOK = false;
       do {
-         // Luetaan rivi ja yritetään muuttaa se kokonaisluvuksi.
+         // Luetaan rivi ja yritetï¿½ï¿½n muuttaa se kokonaisluvuksi.
          try {
             intval = Integer.parseInt(READER.nextLine());
             inputOK = true;
          }
 
-         // Siepataan väärän tyypin aiheuttama poikkeus.
+         // Siepataan vï¿½ï¿½rï¿½n tyypin aiheuttama poikkeus.
          catch (NumberFormatException e) {
             // Herjataan.
             System.out.println(BARF);
             inputOK = false;
          }
 
-         // Siepataan yllättävä poikkeus. (Jotain meni pahasti pieleen.)
+         // Siepataan yllï¿½ttï¿½vï¿½ poikkeus. (Jotain meni pahasti pieleen.)
          catch (Exception e) {
             doNotSoGracefulExit(e);
          }
@@ -104,28 +104,28 @@ final public class In {
       return intval;
    }
 
-   /* Luetaan käyttäjältä double-tyyppistä syötettä,
-    * kunnes käyttäjä suostuu sellaisen antamaan.
+   /* Luetaan kï¿½yttï¿½jï¿½ltï¿½ double-tyyppistï¿½ syï¿½tettï¿½,
+    * kunnes kï¿½yttï¿½jï¿½ suostuu sellaisen antamaan.
     */
    public static double readDouble() {
-      // Luetaan, kunnes saadaan syöte.
+      // Luetaan, kunnes saadaan syï¿½te.
       double dblval = 0;
       boolean inputOK = false;
       do {
-         // Luetaan rivi ja yritetään muuttaa se liukuluvuksi.
+         // Luetaan rivi ja yritetï¿½ï¿½n muuttaa se liukuluvuksi.
          try {
             dblval = Double.parseDouble(READER.nextLine());
             inputOK = true;
          }
 
-         // Siepataan väärän tyypin aiheuttama poikkeus.
+         // Siepataan vï¿½ï¿½rï¿½n tyypin aiheuttama poikkeus.
          catch (NumberFormatException e) {
             // Herjataan.
             System.out.println(BARF);
             inputOK = false;
          }
 
-         // Siepataan yllättävä poikkeus. (Jotain meni pahasti pieleen.)
+         // Siepataan yllï¿½ttï¿½vï¿½ poikkeus. (Jotain meni pahasti pieleen.)
          catch (Exception e) {
             doNotSoGracefulExit(e);
          }
@@ -136,11 +136,11 @@ final public class In {
       return dblval;
    }
 
-   /* Luetaan käyttäjältä char-tyyppistä syötettä,
-    * kunnes käyttäjä suostuu sellaisen antamaan.
+   /* Luetaan kï¿½yttï¿½jï¿½ltï¿½ char-tyyppistï¿½ syï¿½tettï¿½,
+    * kunnes kï¿½yttï¿½jï¿½ suostuu sellaisen antamaan.
     */
    public static char readChar() {
-      // Luetaan, kunnes saadaan syöte.
+      // Luetaan, kunnes saadaan syï¿½te.
       char chrval = 0;
       boolean inputOK = false;
       do {
@@ -148,19 +148,19 @@ final public class In {
              // Luetaan rivi.
             String strval = READER.nextLine();
 
-            // Tarkastellaan syötettä.
+            // Tarkastellaan syï¿½tettï¿½.
             inputOK = strval.length() == 1;
 
-            // Käyttäjä antoi yhden merkin, kuten piti.
+            // Kï¿½yttï¿½jï¿½ antoi yhden merkin, kuten piti.
             if (inputOK)
                chrval = strval.charAt(0);
 
-            // Käyttäjä ei antanut merkkejä tai hän antoi useita merkkejä.
+            // Kï¿½yttï¿½jï¿½ ei antanut merkkejï¿½ tai hï¿½n antoi useita merkkejï¿½.
             else
                System.out.println(BARF);
          }
 
-         // Siepataan yllättävä poikkeus. (Jotain meni pahasti pieleen.)
+         // Siepataan yllï¿½ttï¿½vï¿½ poikkeus. (Jotain meni pahasti pieleen.)
          catch (Exception e) {
             doNotSoGracefulExit(e);
          }
@@ -172,11 +172,11 @@ final public class In {
       return chrval;
    }
 
-   /* Luetaan käyttäjältä String-tyyppinen syöte,
-    * joka ei voi olla tyhjä merkkijono ("").
+   /* Luetaan kï¿½yttï¿½jï¿½ltï¿½ String-tyyppinen syï¿½te,
+    * joka ei voi olla tyhjï¿½ merkkijono ("").
     */
    public static String readString() {
-      // Luetaan, kunnes saadaan syöte.
+      // Luetaan, kunnes saadaan syï¿½te.
       String strval = "";
       boolean inputOK = false;
       do {
@@ -192,7 +192,7 @@ final public class In {
                System.out.println(BARF);
          }
 
-         // Siepataan yllättävä poikkeus. (Jotain meni pahasti pieleen.)
+         // Siepataan yllï¿½ttï¿½vï¿½ poikkeus. (Jotain meni pahasti pieleen.)
          catch (Exception e) {
             doNotSoGracefulExit(e);
          }

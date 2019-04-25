@@ -1,16 +1,16 @@
 package harjoitustyo.apulaiset;
 
-// Otetaan käyttöön Javan linkitetty lista.
+// Otetaan kï¿½yttï¿½ï¿½n Javan linkitetty lista.
 import java.util.LinkedList;
 
 /**
- * Hakemiston käsittelyyn soveltuvia metodeja. Kiinnitä geneerinen tyyppi T
- * tyypiksi Tieto, kun toteutat tämän rajapinnan metodit Hakemisto-luokassa.
+ * Hakemiston kï¿½sittelyyn soveltuvia metodeja. Kiinnitï¿½ geneerinen tyyppi T
+ * tyypiksi Tieto, kun toteutat tï¿½mï¿½n rajapinnan metodit Hakemisto-luokassa.
  * <p>
- * Harjoitustyö, Olio-ohjelmoinnin perusteet I, kevät 2019.
+ * Harjoitustyï¿½, Olio-ohjelmoinnin perusteet I, kevï¿½t 2019.
  * <p>
  * @author Jorma Laurikkala (jorma.laurikkala@tuni.fi), Informaatioteknologian
- * ja viestinnän tiedekunta, Tampereen yliopisto.
+ * ja viestinnï¿½n tiedekunta, Tampereen yliopisto.
  *
  */
 
@@ -22,34 +22,34 @@ public interface Sailova<T> {
     * (esimerkiksi "*.jpeg").
     * <p>
     * Paluuarvona palautettavalla listalla on yksi viite, jos parametri on hakemistossa
-    * olevan tiedon nimi. Jokerimerkkien avulla voidaan löytää useampia tietoja.
+    * olevan tiedon nimi. Jokerimerkkien avulla voidaan lï¿½ytï¿½ï¿½ useampia tietoja.
     * <p>
-    * Hyödyntää Tieto-luokassa toteutettavaa {@link Tietoinen#equals(String)}
-    * -metodia siten, että palautettavalle listalle lisätään jokainen hakemiston
+    * Hyï¿½dyntï¿½ï¿½ Tieto-luokassa toteutettavaa {@link Tietoinen#equals(String)}
+    * -metodia siten, ettï¿½ palautettavalle listalle lisï¿½tï¿½ï¿½n jokainen hakemiston
     * listalla oleva viite x = get(ind), jolle lauseke "x.equals(hakusana)" on totta.
-    * Haku alkaa hakemiston ensimmäisestä alkiosta ja päättyy hakemiston viimeiseen
-    * alkioon. Viitteet löydettyihin alkioihin ovat palautettavalla listalla samassa
-    * järjestyksessä kuin hakemiston listalla.
+    * Haku alkaa hakemiston ensimmï¿½isestï¿½ alkiosta ja pï¿½ï¿½ttyy hakemiston viimeiseen
+    * alkioon. Viitteet lï¿½ydettyihin alkioihin ovat palautettavalla listalla samassa
+    * jï¿½rjestyksessï¿½ kuin hakemiston listalla.
     * <p>
     * @param hakusana nimi tai ilmaus, johon hakemiston tiedostojen ja alihakemistojen
-    * nimiä verrataan.
-    * @return lista, jolla on viitteet löydettyihin tietoihin, joiden nimet vastaavat
-    * parametria. Lista on tyhjä eli nolla viitettä sisältävä lista, jos hakemistossa
+    * nimiï¿½ verrataan.
+    * @return lista, jolla on viitteet lï¿½ydettyihin tietoihin, joiden nimet vastaavat
+    * parametria. Lista on tyhjï¿½ eli nolla viitettï¿½ sisï¿½ltï¿½vï¿½ lista, jos hakemistossa
     * ei ole tietoja, joiden nimet vastavat parametria, parametri on null-arvoinen,
-    * ilmauksessa on käytetty jokerimerkkejä väärin tai hakemisto on tyhjä.
+    * ilmauksessa on kï¿½ytetty jokerimerkkejï¿½ vï¿½ï¿½rin tai hakemisto on tyhjï¿½.
     * @see Tietoinen#equals(String)
     */
    abstract public LinkedList<T> hae(String hakusana);
 
    /**
-    * Lisää hakemistoon tiedoston tai alihakemiston. Kutsuu hakemiston listan
-    * toteuttamaa Ooperoiva-rajapinnan lisaa-metodia, jolla tieto saadaan lisätyksi
-    * oikeaan paikkaan listalla. Lisäys onnistuu, jos parametri liittyy olioon,
+    * Lisï¿½ï¿½ hakemistoon tiedoston tai alihakemiston. Kutsuu hakemiston listan
+    * toteuttamaa Ooperoiva-rajapinnan lisaa-metodia, jolla tieto saadaan lisï¿½tyksi
+    * oikeaan paikkaan listalla. Lisï¿½ys onnistuu, jos parametri liittyy olioon,
     * jonka luokalla on Comparable-rajapinnan compareTo-metodin toteutus. Null-arvon
-    * lisäys epäonnistuu aina.
+    * lisï¿½ys epï¿½onnistuu aina.
     *
-    * @param lisattava viite lisättävään tietoon.
-    * @return true, jos lisäys onnistui. False, jos lisäys epäonnistui.
+    * @param lisattava viite lisï¿½ttï¿½vï¿½ï¿½n tietoon.
+    * @return true, jos lisï¿½ys onnistui. False, jos lisï¿½ys epï¿½onnistui.
     */
    abstract public boolean lisaa(T lisattava);
 
@@ -58,7 +58,7 @@ public interface Sailova<T> {
     * toteuttamaa Ooperoiva-rajapinnan poista-metodia.
     *
     * @param poistettava viite poistettavaan tietoon.
-    * @return true, jos alkio poistettiin. False, jos poistettavaa alkiota ei löydetty
+    * @return true, jos alkio poistettiin. False, jos poistettavaa alkiota ei lï¿½ydetty
     * tai parametri on null.
     */
    abstract public boolean poista(T poistettava);

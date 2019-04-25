@@ -21,7 +21,6 @@ public class Tiedosto extends Tieto implements Syvakopioituva {
     * Rakentajat. 
     */
    public Tiedosto () {
-      super();
       koko = 0; 
    }
    
@@ -39,16 +38,16 @@ public class Tiedosto extends Tieto implements Syvakopioituva {
      * Aksessorit.
      * @param uusiKoko
      * */
-   
-   public int koko () {
-        return koko;
-    }
-   
-    public void koko(int uusiKoko) throws IllegalArgumentException{
-        if (uusiKoko < 0) {
+    private void koko(int uusiKoko) throws IllegalArgumentException{
+        if (koko < 0) {
            throw new IllegalArgumentException("Virheellinen koko!"); 
         }
-        koko = uusiKoko;
+        else {
+            koko = uusiKoko;
+        }
+    }
+    private int koko () {
+        return koko;
     }
     
     /**
@@ -56,7 +55,7 @@ public class Tiedosto extends Tieto implements Syvakopioituva {
      */
     @Override
     public Object kopioi() {
-        throw new UnsupportedOperationException("Not supported yet."); 
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
     /**
