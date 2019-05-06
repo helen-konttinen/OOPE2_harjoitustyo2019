@@ -65,12 +65,12 @@ public class Tulkki {
                     tyohakemisto = (Hakemisto)loytyneet.get(0);
                 }
             }
-            System.out.println("Error!");
+            
         }
     }
     
     public LinkedList<Tieto> listattavatTiedot (String hakusana) {
-        //LinkedList<Tieto> palautettavaLista = new LinkedList<Tieto>();
+        LinkedList<Tieto> palautettavaLista = new LinkedList<Tieto>();
         
         if (hakusana.equals("")) {
             LinkedList<Tieto> nykyinenHakemistoSisalto= tyohakemisto.hae(tyohakemisto.toString());
@@ -103,26 +103,8 @@ public class Tulkki {
         }
         return false;
     }
-    
-    public String annaPolku (Hakemisto nykyH) {
-        String polku = ">";
+    /*
+    public boolean sulje () {
         
-        while (nykyH != null) {
-            StringBuilder hNimi = nykyH.nimi();
-            
-            // sijainti on juuressa, jos parametrina annettu hakemisto on null
-            if(nykyH.ylihakemisto() == null) {
-                polku = hNimi + "" + polku;
-            }
-            else {
-                polku = hNimi + "/" + polku;
-            }
-            nykyH = nykyH.ylihakemisto();
-        }
-        return polku;
-    }
-    
-    public String annaPolku () {
-        return annaPolku(tyohakemisto);
-    }
+    }*/
 }
