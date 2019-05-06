@@ -91,19 +91,11 @@ public class Tulkki {
         }
         return true;
     }
-    
-    public boolean uudelleenNimeaminen (String nykyinenNimi, String uusiNimi) throws IllegalArgumentException {
-        LinkedList<Tieto> loydettyNyky = tyohakemisto.hae(nykyinenNimi);
-        LinkedList<Tieto> loydettyUusi = tyohakemisto.hae(uusiNimi);
-        if (!loydettyNyky.isEmpty() && loydettyUusi.isEmpty()) {
-            for (Tieto tieto: loydettyNyky) {
-                tyohakemisto.nimi(new StringBuilder(uusiNimi));
-            }
-            return true;
-        }
-        return false;
-    }
     /*
+    public boolean uudelleenNimeaminen () {
+        
+    }
+    
     public boolean sulje () {
         
     }*/
