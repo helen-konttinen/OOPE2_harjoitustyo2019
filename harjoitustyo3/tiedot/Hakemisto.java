@@ -67,8 +67,9 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
     @SuppressWarnings("unchecked")
     @Override
     public LinkedList<Tieto> hae(String hakusana) {
-        LinkedList<Tieto> haettuLista = new LinkedList<Tieto>();
         try {
+            LinkedList<Tieto> haettuLista = new LinkedList<Tieto>();
+            
             for (int i = 0; i < sisalto.size(); i++) {
                 Tieto seuraavaAlkio = sisalto.get(i);
                 
@@ -79,7 +80,7 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
             return haettuLista;
         }
         catch (IndexOutOfBoundsException e) {
-            return haettuLista;
+            return null;
         }
     }
 

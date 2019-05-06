@@ -21,13 +21,8 @@ public class Oope2HT {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Hakemisto juuri = new Hakemisto();
-        Hakemisto tyohakemisto = juuri;
         
-        Hakemisto h1 = new Hakemisto(new StringBuilder("pics"), null);
-        boolean v1 = tyohakemisto.luodaanAlihakemisto("cats");
-        
-        /*Hakemisto h1 = new Hakemisto();
+        Hakemisto h1 = new Hakemisto();
         System.out.println(h1);
         
         Hakemisto h2 = new Hakemisto(new StringBuilder("h2"),h1);
@@ -78,7 +73,7 @@ public class Oope2HT {
         for (int j = 0; j < lista1.size(); j++) {
             
             System.out.println(lista1.get(j));
-        }*/
+        }
         
   
     }
