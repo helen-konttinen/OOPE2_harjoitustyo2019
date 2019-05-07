@@ -21,42 +21,38 @@ public class Kayttoliittyma {
             if (komento.startsWith("md")) {
                 try {
                     if (komento.equals("md")) {
-                        System.out.println("Error!");
+                        System.out.println("Error!!!");
                     }
                     else {
                         komento = komento.substring(3);
-                        boolean onnistuiko = tulkki.luodaanAlihakemisto(komento);
-                        
-                        if (!onnistuiko) {
+                    }
+                    boolean onnistuiko = tulkki.luodaanAlihakemisto(komento);
+
+                    if (!onnistuiko) {
                         System.out.println("Error!");
-                        }
-                    }     
+                    }
                 }
                 catch (Exception e) {
-                    System.out.println("Error!");
+                    
                 }
             }
             else if (komento.startsWith("mf")) {
                 try {
-                    if (komento.equals("mf")) {
+                    komento = komento.substring(3);
+                    String[] katkottu = komento.split(" ");
+
+                    if (katkottu.length < 2 || katkottu.length > 2) {
+                        System.out.println("Virheellinen koko!");
+                    }
+
+                    boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
+
+                    if (!onnistuiko) {
                         System.out.println("Error!");
                     }
-                    else {
-                        komento = komento.substring(3);
-                        String[] katkottu = komento.split(" ");
-                        
-                        if (katkottu.length < 2) {
-                            System.out.println("Error!");
-                        }
-                        boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
-
-                        if (!onnistuiko) {
-                            System.out.println("Error!");
-                        }
-                    }  
                 }
                 catch (Exception e) {
-                    System.out.println("Error!");
+                    
                 }
             }
             else if (komento.startsWith("cd")) {
@@ -71,7 +67,7 @@ public class Kayttoliittyma {
                     tulkki.siirtyma(komento);
                 }
                 catch (Exception e) {
-                    System.out.println("Error!");
+                    
                 }
             }
             else if (komento.startsWith("ls")) {
@@ -84,14 +80,9 @@ public class Kayttoliittyma {
                     }
 
                     LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
-                    
-                    if (!(komento.equals("")) && listattava.size() == 0) {
-                        System.out.println("Error!");
-                    }
-                    else {
-                        for (Tieto tieto: listattava) {
-                            System.out.println(tieto.toString());
-                        }
+
+                    for (Tieto tieto: listattava) {
+                        System.out.println(tieto.toString());
                     }
                 }
                 catch (Exception e) {
@@ -110,20 +101,13 @@ public class Kayttoliittyma {
             }
             else if (komento.startsWith("mv")) {
                 try {
-                    if (komento.equals("mv")) {
-                        System.out.println("Error!");
-                    }
                     komento = komento.substring(3);
                     String[] katkottu = komento.split(" ");
 
                     boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
-                    
-                    if (!nimettyUudelleen) {
-                        System.out.println("Error!");
-                    }
                 }
                 catch (Exception e) {
-                    System.out.println("Error!");
+                    
                 }
             }
             else if (komento.equals("exit")) {

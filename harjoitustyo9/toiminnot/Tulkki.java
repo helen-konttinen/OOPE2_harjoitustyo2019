@@ -30,7 +30,7 @@ public class Tulkki {
         
         LinkedList<Tieto> haettu = tyohakemisto.hae(hNimi);
         
-        if (haettu.size() != 0) {
+        if (haettu.size() > 0) {
             return false;
         }
         Hakemisto uusiHakemisto = new Hakemisto(new StringBuilder(hNimi), tyohakemisto);
@@ -41,7 +41,7 @@ public class Tulkki {
     public boolean luodaanTiedosto (String tNimi, int uusiKoko) {
         LinkedList<Tieto> haettuTiedosto = tyohakemisto.hae(tNimi);
         
-        if (haettuTiedosto.size() != 0) {
+        if (haettuTiedosto.size() > 0) {
             return false;
         }
         Tiedosto uusiTiedosto = new Tiedosto(new StringBuilder(tNimi), uusiKoko);
@@ -49,15 +49,10 @@ public class Tulkki {
         return onnistuikoLisays;
     }
     
-    public void siirtyma (String siirrytaanHakemistoon)throws IllegalArgumentException {
+    public void siirtyma (String siirrytaanHakemistoon) {
         
         if (siirrytaanHakemistoon.equals("..")) {
-            if (juuri == tyohakemisto) {
-                System.out.println("Error!");
-            }
-            else {
-                tyohakemisto = tyohakemisto.ylihakemisto();
-            }
+            tyohakemisto = tyohakemisto.ylihakemisto();
             
         }
         else if (siirrytaanHakemistoon.equals("")) {
@@ -65,17 +60,13 @@ public class Tulkki {
         }
         else {
             LinkedList<Tieto> loytyneet = tyohakemisto.hae(siirrytaanHakemistoon);
-            
-            if (loytyneet != null && loytyneet.size() > 0) {
-                if (loytyneet.size() == 1 && (loytyneet.getFirst() instanceof Hakemisto)) {
+            if (loytyneet != null) {
+                if (loytyneet.size() == 1 && loytyneet.get(0) instanceof Hakemisto) {
                     tyohakemisto = (Hakemisto)loytyneet.get(0);
-                }
-                else {
-                    throw new IllegalArgumentException();
                 }
             }
             else {
-                throw new IllegalArgumentException();
+                System.out.println("Error!");
             }
         }
     }
@@ -112,9 +103,7 @@ public class Tulkki {
             }
             return true;
         }
-        else {
-            throw new IllegalArgumentException();
-        }
+        return false;
     }
     
     public String annaPolku (Hakemisto nykyH) {
