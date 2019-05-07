@@ -36,22 +36,12 @@ public class Kayttoliittyma {
                 }
             }
             if (komento.startsWith("cd")) {
-                if (komento.equals("cd")) {
-                    komento = "";
-                }
-                else {
-                    komento = komento.substring(3);
-                }
-                
+                komento = komento.substring(3);
+
                 tulkki.siirtyma(komento);
             }
             if (komento.startsWith("ls")) {
-                if (komento.equals("ls")) {
-                    komento = "";
-                }
-                else {
-                    komento = komento.substring(3);
-                }
+                komento = komento.substring(3);
 
                 LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
 

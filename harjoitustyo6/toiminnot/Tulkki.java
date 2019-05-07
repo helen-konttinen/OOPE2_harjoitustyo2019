@@ -65,9 +65,7 @@ public class Tulkki {
                     tyohakemisto = (Hakemisto)loytyneet.get(0);
                 }
             }
-            else {
-                System.out.println("Error!");
-            }
+            System.out.println("Error!");
         }
     }
     
@@ -75,7 +73,7 @@ public class Tulkki {
         //LinkedList<Tieto> palautettavaLista = new LinkedList<Tieto>();
         
         if (hakusana.equals("")) {
-            LinkedList<Tieto> nykyinenHakemistoSisalto= tyohakemisto.sisalto();
+            LinkedList<Tieto> nykyinenHakemistoSisalto= tyohakemisto.hae(tyohakemisto.toString());
             return nykyinenHakemistoSisalto;
         }
         else {
