@@ -14,64 +14,107 @@ public class Kayttoliittyma {
         boolean ajetaan = true;
         Tulkki tulkki = new Tulkki();
         while (ajetaan) {
+            System.out.print("/");
             System.out.print(tulkki.annaPolku());
             String komento = In.readString();
 
             if (komento.startsWith("md")) {
-                komento = komento.substring(3);
-                boolean onnistuiko = tulkki.luodaanAlihakemisto(komento);
-                
-                if (!onnistuiko) {
-                    System.out.println("Error!");
-                }
-            }
-            if (komento.startsWith("mf")) {
-                komento = komento.substring(3);
-                String[] katkottu = komento.split(" ");
+                try {
+                    if (komento.equals("md")) {
+                        System.out.println("Error!!!");
+                    }
+                    else {
+                        komento = komento.substring(3);
+                    }
+                    boolean onnistuiko = tulkki.luodaanAlihakemisto(komento);
 
-                boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
-                
-                if (!onnistuiko) {
-                    System.out.println("Error!");
+                    if (!onnistuiko) {
+                        System.out.println("Error!");
+                    }
+                }
+                catch (Exception e) {
+                    
                 }
             }
-            if (komento.startsWith("cd")) {
-                if (komento.equals("cd")) {
-                    komento = "";
-                }
-                else {
+            else if (komento.startsWith("mf")) {
+                try {
                     komento = komento.substring(3);
+                    String[] katkottu = komento.split(" ");
+
+                    if (katkottu.length < 2 || katkottu.length > 2) {
+                        System.out.println("Virheellinen koko!");
+                    }
+
+                    boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
+
+                    if (!onnistuiko) {
+                        System.out.println("Error!");
+                    }
                 }
-                
-                tulkki.siirtyma(komento);
+                catch (Exception e) {
+                    
+                }
             }
-            if (komento.startsWith("ls")) {
-                if (komento.equals("ls")) {
-                    komento = "";
+            else if (komento.startsWith("cd")) {
+                try {
+                    if (komento.equals("cd")) {
+                        komento = "";
+                    }
+                    else {
+                        komento = komento.substring(3);
+                    }
+
+                    tulkki.siirtyma(komento);
                 }
-                else {
+                catch (Exception e) {
+                    
+                }
+            }
+            else if (komento.startsWith("ls")) {
+                try {
+                    if (komento.equals("ls")) {
+                        komento = "";
+                    }
+                    else {
+                        komento = komento.substring(3);
+                    }
+
+                    LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
+
+                    for (Tieto tieto: listattava) {
+                        System.out.println(listattava.toString());
+                    }
+                }
+                catch (Exception e) {
+                    
+                }
+            }
+            else if (komento.startsWith("rm")) {
+                try {
                     komento = komento.substring(3);
+
+                    boolean loydtyiPoistettavia = tulkki.poista(komento);
                 }
-
-                LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
-
-                for (Tieto tieto: listattava) {
-                    System.out.println(listattava.toString());
+                catch (Exception e) {
+                    
                 }
             }
-            if (komento.startsWith("rm")) {
-                komento = komento.substring(3);
+            else if (komento.startsWith("mv")) {
+                try {
+                    komento = komento.substring(3);
+                    String[] katkottu = komento.split(" ");
 
-                boolean loydtyiPoistettavia = tulkki.poista(komento);
+                    boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
+                }
+                catch (Exception e) {
+                    
+                }
             }
-            if (komento.startsWith("mv")) {
-                komento = komento.substring(3);
-                String[] katkottu = komento.split(" ");
-
-                boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
-            }
-            if (komento.equals("exit")) {
+            else if (komento.equals("exit")) {
                 ajetaan = false;
+            }
+            else {
+                System.out.println("Error!");
             }
         }
     }
