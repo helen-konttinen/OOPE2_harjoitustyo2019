@@ -82,7 +82,7 @@ public class Kayttoliittyma {
                     LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
 
                     for (Tieto tieto: listattava) {
-                        System.out.println(tieto.toString());
+                        System.out.println(listattava.toString());
                     }
                 }
                 catch (Exception e) {
