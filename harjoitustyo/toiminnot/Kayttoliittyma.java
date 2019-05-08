@@ -85,7 +85,7 @@ public class Kayttoliittyma {
 
                     LinkedList<Tieto> listattava = tulkki.listattavatTiedot(komento);
                     
-                    if (!(komento.equals("")) && listattava.size() == 0) {
+                    if (!(komento.equals("")) && listattava.size() == 0 && !(komento.equals("*"))) {
                         System.out.println("Error!");
                     }
                     else {
@@ -100,12 +100,20 @@ public class Kayttoliittyma {
             }
             else if (komento.startsWith("rm")) {
                 try {
-                    komento = komento.substring(3);
-
-                    boolean loydtyiPoistettavia = tulkki.poista(komento);
+                    if (komento.equals("rm")) {
+                        System.out.println("Error!");
+                    }
+                    else {
+                        komento = komento.substring(3);
+                        boolean loytyiPoistettavia = tulkki.poista(komento);
+                        
+                        if (!loytyiPoistettavia) {
+                            throw new IllegalArgumentException();
+                        }
+                    }
                 }
                 catch (Exception e) {
-                    
+                    System.out.println("Error!");
                 }
             }
             else if (komento.startsWith("mv")) {
