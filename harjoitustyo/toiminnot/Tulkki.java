@@ -179,10 +179,17 @@ public class Tulkki {
         LinkedList<Tieto> loydettyUusi = tyohakemisto.hae(uusiNimi);
         if (loydettyNyky.size() == 1 && loydettyUusi.isEmpty()) {
             Tieto nyky = loydettyNyky.get(0);
-            poista(nyky.nimi().toString());
-            nyky.nimi(new StringBuilder(uusiNimi));
-            tyohakemisto.lisaa(nyky);
-                
+            try {
+                poista(nyky.nimi().toString());
+                nyky.nimi(new StringBuilder(uusiNimi));
+                tyohakemisto.lisaa(nyky);
+            }
+            catch (Exception e){
+                nyky.nimi(new StringBuilder(nyky.nimi().toString()));
+                tyohakemisto.lisaa(nyky);
+            }
+
+
             return true;
         }
         else {
