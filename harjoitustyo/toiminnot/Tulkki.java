@@ -6,51 +6,119 @@ import harjoitustyo.tiedot.Hakemisto;
 import harjoitustyo.tiedot.Tieto;
 
 /**
- *
- * @author helen
+ * Tulkki -luokka, joka saa komentoja Käyttöliittymä -luokalta ja suorittaa ne
+ * kutsumalla mm. Hakemisto ja Tieto luokkia.
+ * <p>
+ * Harjoitustyö, Olio-ohjelmoinnin perusteet II, kevät 2019.
+ * <p>
+ * @author Helen Konttinen (helen.konttinen@tuni.fi)
+ * Informaatioteknologian ja viestinnän tiedekunta,
+ * Tampereen yliopisto.
  */
 public class Tulkki {
     /**
      * Attribuutit.
-     * @return 
+     */
+    
+    /**
+     * Hakemisto -tyyppinen attribuutti juurihakemistolle.
      */
     private Hakemisto juuri;
+    
+    /**
+     * Hakemisto -tyyppinen attribuutti nykyiselle hakemistolle,
+     * eli työstettävälle hakemistolle.
+     */
     private Hakemisto tyohakemisto;
     
     /** 
      * Rakentajat.
      * 
      * */
+    
+    /**
+     * Oletusrakentaja tulkille.
+     * Asettaa uuden juurihakemiston ja asettaa sen
+     * työhakemistoksi.
+     */
     public Tulkki () {
         juuri = new Hakemisto();
         tyohakemisto = juuri;
     }
     
+    /**
+     * Luodaan alihakemisto nykyiselle hakemistolle.
+     * @param hNimi parametrina annettu nimi uudelle alihakemistolle.
+     * @return true, jos onnistutaan luomaan alihakemisto, ja false jos ei
+     * onnistuta.
+     */
     public boolean luodaanAlihakemisto (String hNimi) {
-        
+        /**Luodaan LinkedList -tyyppinen muuttuja, jonka geneeriseksi
+         * tyypiksi on kiinnitetty Tieto, joka hakee parametrina annettua nimeä
+         * jo luoduista hakemistoista.
+         */
         LinkedList<Tieto> haettu = tyohakemisto.hae(hNimi);
         
+        /** Jos palautettu listan koko on erisuuri kuin 0, eli listalla
+         * on jotain palautetaan false. Parametrina annettu nimi on siis 
+         * jo olemassa.
+         */
         if (haettu.size() != 0) {
             return false;
         }
+        
+        /** Luodaan uusi hakemisto parametrilla annetulla nimellä ja nykyinen
+         * työhakemisto ylihakemistona.
+         * 
+         */
         Hakemisto uusiHakemisto = new Hakemisto(new StringBuilder(hNimi), tyohakemisto);
+        /** Yritetään lisätä luotu hakemisto listaan ja palautetaan onnistuiko
+         * vai ei.
+         */
         boolean onnistuikoLisays = tyohakemisto.lisaa(uusiHakemisto);
         return onnistuikoLisays;
     }
     
+    /**
+     * Luodaan uusi Tiedosto nykyiseen hakemistoon.
+     * @param tNimi tiedoston nimelle,
+     * @param uusiKoko tiedoston koolle
+     * @return true, jos tiedoston lisääminen onnistui, muuten false.
+     */
     public boolean luodaanTiedosto (String tNimi, int uusiKoko) {
+        /**
+         * Luodaan uusi LinkedList geneerisellä tyypillä Tieto. Haetaan
+         * parametina annetulla nimellä jo luoduista hakemistoista ja tiedostoista.
+         */
         LinkedList<Tieto> haettuTiedosto = tyohakemisto.hae(tNimi);
         
+        /** 
+         * Jos listalla on jotain, eli nimi on jo käytössä, palautetaan false.
+         */
         if (haettuTiedosto.size() != 0) {
             return false;
         }
+        /**
+         * Luodaan uusi tiedosto parametrina annetulla nimellä ja koolla.
+         * Yritetään lisätä tiedosto listalle. Palautetaan paluuarvo.
+         */
         Tiedosto uusiTiedosto = new Tiedosto(new StringBuilder(tNimi), uusiKoko);
         boolean onnistuikoLisays = tyohakemisto.lisaa(uusiTiedosto);
         return onnistuikoLisays;
     }
     
+    /**
+     * Vaihdetaan hakemistoa yli-, ali-, juuri- tai tietyn nimiseen hakemistoon.
+     * @param siirrytaanHakemistoon nimi, hakemistolle minne halutaan siirtyä.
+     * @throws IllegalArgumentException jos parametreissa oli virhe.
+     */
     public void siirtyma (String siirrytaanHakemistoon)throws IllegalArgumentException {
         
+        /** 
+         * Jos parametina annettu merkkijono on "..",
+         * tarkistetaan onko nykyhakemisto juurihakemisto. Silloin valitetaan.
+         * Muutenasetetaan ylihakemisto nykyhakemistoksi.
+         */
         if (siirrytaanHakemistoon.equals("..")) {
             if (juuri == tyohakemisto) {
                 System.out.println("Error!");
@@ -60,6 +128,9 @@ public class Tulkki {
             }
             
         }
+        /**
+         * Jos parametrina
+         */
         else if (siirrytaanHakemistoon.equals("")) {
             tyohakemisto = juuri;
         }
@@ -106,15 +177,12 @@ public class Tulkki {
     public boolean uudelleenNimeaminen (String nykyinenNimi, String uusiNimi) throws IllegalArgumentException {
         LinkedList<Tieto> loydettyNyky = tyohakemisto.hae(nykyinenNimi);
         LinkedList<Tieto> loydettyUusi = tyohakemisto.hae(uusiNimi);
-        if (!loydettyNyky.isEmpty() && loydettyUusi.isEmpty()) {
-            for (Tieto tieto: loydettyNyky) {
-                tieto.nimi(new StringBuilder(uusiNimi)); 
-                boolean onnistuikoListaus = tyohakemisto.lisaa(tieto);
+        if (loydettyNyky.size() == 1 && loydettyUusi.isEmpty()) {
+            Tieto nyky = loydettyNyky.get(0);
+            poista(nyky.nimi().toString());
+            nyky.nimi(new StringBuilder(uusiNimi));
+            tyohakemisto.lisaa(nyky);
                 
-                if (!onnistuikoListaus) {
-                    return false;
-                }
-            }
             return true;
         }
         else {
