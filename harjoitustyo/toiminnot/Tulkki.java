@@ -108,7 +108,12 @@ public class Tulkki {
         LinkedList<Tieto> loydettyUusi = tyohakemisto.hae(uusiNimi);
         if (!loydettyNyky.isEmpty() && loydettyUusi.isEmpty()) {
             for (Tieto tieto: loydettyNyky) {
-                tieto.nimi(new StringBuilder(uusiNimi));
+                tieto.nimi(new StringBuilder(uusiNimi)); 
+                boolean onnistuikoListaus = tyohakemisto.lisaa(tieto);
+                
+                if (!onnistuikoListaus) {
+                    return false;
+                }
             }
             return true;
         }

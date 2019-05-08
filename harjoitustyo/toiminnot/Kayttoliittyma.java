@@ -46,12 +46,12 @@ public class Kayttoliittyma {
                         String[] katkottu = komento.split(" ");
                         
                         if (katkottu.length < 2) {
-                            System.out.println("Error!");
+                            throw new IllegalArgumentException();
                         }
                         boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
 
                         if (!onnistuiko) {
-                            System.out.println("Error!");
+                            throw new IllegalArgumentException();
                         }
                     }  
                 }
