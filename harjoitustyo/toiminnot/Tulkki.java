@@ -187,6 +187,7 @@ public class Tulkki {
             catch (Exception e){
                 nyky.nimi(new StringBuilder(nyky.nimi().toString()));
                 tyohakemisto.lisaa(nyky);
+                throw new IllegalArgumentException();
             }
 
 
