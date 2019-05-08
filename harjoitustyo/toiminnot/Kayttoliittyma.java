@@ -121,13 +121,15 @@ public class Kayttoliittyma {
                     if (komento.equals("mv")) {
                         System.out.println("Error!");
                     }
-                    komento = komento.substring(3);
-                    String[] katkottu = komento.split(" ");
+                    else {
+                        komento = komento.substring(3);
+                        String[] katkottu = komento.split(" ");
 
-                    boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
-                    
-                    if (!nimettyUudelleen) {
-                        System.out.println("Error!");
+                        boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
+
+                        if (!nimettyUudelleen) {
+                            System.out.println("Error!");
+                        }
                     }
                 }
                 catch (Exception e) {
