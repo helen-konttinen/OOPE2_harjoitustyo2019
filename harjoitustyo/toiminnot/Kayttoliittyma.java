@@ -48,6 +48,9 @@ public class Kayttoliittyma {
                         if (katkottu.length < 2) {
                             throw new IllegalArgumentException();
                         }
+                        if (katkottu.length > 2) {
+                            throw new IllegalArgumentException();
+                        }
                         boolean onnistuiko = tulkki.luodaanTiedosto(katkottu[0], Integer.parseInt(katkottu[1]));
 
                         if (!onnistuiko) {
@@ -124,6 +127,10 @@ public class Kayttoliittyma {
                     else {
                         komento = komento.substring(3);
                         String[] katkottu = komento.split(" ");
+                        
+                        if (katkottu.length > 2) {
+                            throw new IllegalArgumentException();
+                        }
 
                         boolean nimettyUudelleen = tulkki.uudelleenNimeaminen(katkottu[0], katkottu[1]);
 

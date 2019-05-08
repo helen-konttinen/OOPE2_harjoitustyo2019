@@ -31,7 +31,7 @@ public class OmaLista<E> extends LinkedList<E> implements Ooperoiva<E> {
                     
 
                     int vastaus = lisattava.compareTo(get(i));
-                    System.out.println(vastaus);
+                    //System.out.println(vastaus);
                     if (vastaus < 0) {
                         add(i, uusi);
                         return true;
