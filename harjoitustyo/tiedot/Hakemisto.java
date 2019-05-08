@@ -1,28 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package harjoitustyo.tiedot;
 
 import harjoitustyo.apulaiset.Sailova;
 import harjoitustyo.omalista.OmaLista;
 import java.util.LinkedList;
 /**
- *
- * @author helen
+ * Hakemisto -luokka, joka periytyy Tieto -luokasta ja toteuttaa Sailova
+ * -rajapinnan. Luokka sisältää hakemistolle tyypilliset tiedot.
+ * <p>
+ * Harjoitustyo, Olio-ohjelmoinnin perusteet II, 2019
+ * <p>
+ * @author Helen Konttinen, (helen.konttinen@tuni.fi)
+ * Informaatioteknologian ja viestinnän tiedekunta,
+ * Tampereen yliopisto.
  */
 public class Hakemisto extends Tieto implements Sailova<Tieto> {
-    /**
-     * Attribuutit.
-     * */
+    /** OmaLista -tyyppinen attribuutti hakemiston sisällölle.*/
     private OmaLista<Tieto> sisalto;
-    
+    /** Hakemisto -tyyppinen attribuutti tämän hakemiston ylihakemistolle.*/
     private Hakemisto ylihakemisto;
 
     /**
-     * Rakentajat.
-     * */
+     * Oletusrakentaja Hakemsitolle, joka kutsuu yliluokan oletusrakentajaa, 
+     * ja jossa sisalto-attribuuttiin liitetään tyhjä OmaLista<Tieto>-tyyppinen 
+     * listaolio, sekä asetetaan ylihakemiston
+     * null -arvoiseksi.
+     */
     public Hakemisto() {
         super();
         this.sisalto = new OmaLista<Tieto>();
@@ -30,9 +33,13 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
     }
     
     /**
-     * 
-     * @param hakemistoNimi
-     * @param yHakemisto
+     * Kaksiparametrinen rakentaja, joka kutsuu yliluokan rakentajaa nimen asettamiselle,
+     * ja joka asettaa parametrina annetun ylihakemiston kutsumalla ylihakemsitoa asettavaa
+     * aksessoria. Rakentajassa luodaan tyhjä listaolio ja liitetään siihen attribuutti.
+     * @param hakemistoNimi StringBuilder -tyyppinen parametri nimelle, joka halutaan asettaa 
+     * hakemistolle.
+     * @param yHakemisto Hakemsito -tyyppinen parametri hakemistolle, joka halutaan asettaa
+     * nykyisen hakemiston ylihakemistoksi.
      */
     public Hakemisto (StringBuilder hakemistoNimi, Hakemisto yHakemisto) {
         super(hakemistoNimi);
@@ -41,29 +48,39 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
     }
     
     /**
-     * Aksessorit.
-     * @param yHakemisto
+     * Ylihakemsitoa asettava aksessori.
+     * @param yHakemisto Hakemisto -tyyppinen parametri hakemistolle, joka halutaan
+     * asettaa ylihakemistoksi.
      */
     public void ylihakemisto(Hakemisto yHakemisto) {
         ylihakemisto = yHakemisto;
     }
     
+    /**
+     * Ylihakemistoa lukeva aksessori.
+     * @return viitteen hakemiston ylihakemistoon.
+     */
     public Hakemisto ylihakemisto() {
         return ylihakemisto;
     }
     
+    /**
+     * Sisältöä lukeva aksessori.
+     * @return viitteen hakemiston sisältöön.
+     */
     public OmaLista<Tieto> sisalto() {
         return sisalto;
     }
     
+    /**
+     * Sisältöä asettava aksessori.
+     * @param uusiSisalto parametri uudelle sisällölle, joka halutaan asettaa.
+     */
     public void sisalto(harjoitustyo.omalista.OmaLista<harjoitustyo.tiedot.Tieto> uusiSisalto) {
         sisalto = uusiSisalto;
     }
     
     
-    /**
-     * Korvatut metodit.
-     * */
     @SuppressWarnings("unchecked")
     @Override
     public LinkedList<Tieto> hae(String hakusana) {
@@ -106,7 +123,8 @@ public class Hakemisto extends Tieto implements Sailova<Tieto> {
     }
     
     /**
-     * Object-luokan korvatut metodit.
+     * Object-luokan korvattu toString -metodi, missä kutsutaan
+     * yliluokan toString -metodia.
      */    
     @Override
     public String toString () {
